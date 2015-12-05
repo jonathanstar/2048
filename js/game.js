@@ -50,9 +50,9 @@ Game.prototype.toString = function(){
 // }
 
 Game.prototype.moveSquare = function(originalPos, newPos){
-  if(this.boardString[newPos] === "0"){
-    this.boardString = this.boardString.replaceChar(newPos, this.boardString[originalPos]);
-    this.boardString = this.boardString.replaceChar(originalPos, "0");
+  if(this.boardArray[newPos] === "0"){
+    this.boardArray[newPos] = this.boardArray[originalPos];
+    this.boardArray[originalPos] = "0";
   } else {
     console.log("newPos not empty");
   }
