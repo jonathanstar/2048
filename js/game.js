@@ -29,6 +29,14 @@ Array.prototype.doCollisions = function(){
   }
 }
 
+Array.prototype.stackSquares = function(){
+  var firstEmpty = this.findIndex(function(val){
+    return val === "0";
+  })
+
+
+}
+
 function Game(boardString){
   this.boardArray = boardString.split("");
 }
@@ -36,15 +44,6 @@ function Game(boardString){
 Game.prototype.toString = function(){
  return this.boardArray.slice(0, 4).join(" ") + "\n" + this.boardArray.slice(4, 8).join(" ") + "\n" + this.boardArray.slice(8, 12).join(" ") + "\n" + this.boardArray.slice(12).join(" ");
 }
-
-
-
-// Game.prototype.collide =  function(firstPos, secondPos){
-//   first = parseInt(this.boardString[firstPos]);
-//   second = parseInt(this.boardString[secondPos]);
-//   this.boardString = this.boardString.replaceChar(secondPos, (first + second).toString());
-//   this.boardString = this.boardString.replaceChar(firstPos, "0");
-// }
 
 Game.prototype.moveSquare = function(originalPos, newPos){
   if(this.boardArray[newPos] === "0"){
