@@ -1,13 +1,12 @@
-String.prototype.replaceChar = function(index, character){
-  return this.slice(0, index) + character + this.slice(index+1)
-}
+// String.prototype.replaceChar = function(index, character){
+//   return this.slice(0, index) + character + this.slice(index+1)
+// }
 
-String.prototype.collide = function(movedPos, finalPos){
+Array.prototype.collide = function(movedPos, finalPos){
   var first = parseInt(this[movedPos]);
   var second = parseInt(this[finalPos]);
-  var str = this.replaceChar(finalPos, (first + second).toString());
-  var str = str.replaceChar(movedPos, "0");
-  return str;
+  this[finalPos] = (first + second).toString();
+  this[movedPos] = "0";
 }
 
 String.prototype.findNonZeroIndeces = function(){
