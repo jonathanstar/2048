@@ -33,11 +33,11 @@ String.prototype.doCollisions = function(){
 }
 
 function Game(boardString){
-  this.boardString = boardString;
+  this.boardArray = boardString.split("");
 }
 
 Game.prototype.toString = function(){
- return this.boardString.slice(0, 4) + "\n" + this.boardString.slice(4, 8) + "\n" + this.boardString.slice(8, 12)+ "\n" + this.boardString.slice(12);
+ return this.boardArray.slice(0, 4).join(" ") + "\n" + this.boardArray.slice(4, 8).join(" ") + "\n" + this.boardArray.slice(8, 12).join(" ") + "\n" + this.boardArray.slice(12).join(" ");
 }
 
 
