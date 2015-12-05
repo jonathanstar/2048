@@ -9,7 +9,7 @@ Array.prototype.collide = function(movedPos, finalPos){
   this[movedPos] = "0";
 }
 
-String.prototype.findNonZeroIndeces = function(){
+Array.prototype.findNonZeroIndeces = function(){
   var indecesArray = []
   for (var i = 0; i < this.length; i++){
     if(this[i] !== "0"){
