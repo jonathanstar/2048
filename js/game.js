@@ -19,16 +19,14 @@ Array.prototype.findNonZeroIndeces = function(){
   return indecesArray;
 }
 
-String.prototype.doCollisions = function(){
-  var str = this.valueOf();
+Array.prototype.doCollisions = function(){
   var indecesArray = this.findNonZeroIndeces();
   for(var i = 0; i < indecesArray.length - 1; i++){
-    if(str[indecesArray[i]] === str[indecesArray[i+1]]){
-      str = str.collide(indecesArray[i+1], indecesArray[i]);
+    if(this[indecesArray[i]] === this[indecesArray[i+1]]){
+      this.collide(indecesArray[i+1], indecesArray[i]);
       i++;
     }
   }
-  return str;
 }
 
 function Game(boardString){
