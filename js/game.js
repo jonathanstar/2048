@@ -30,11 +30,13 @@ Array.prototype.doCollisions = function(){
 }
 
 Array.prototype.stackSquares = function(){
-  var firstEmpty = this.findIndex(function(val){
-    return val === "0";
+  var arr = this.filter(function(x){
+    return x!=="0"
   })
-
-
+  for(var i = arr.length; i < 4; i++){
+    arr.push("0")
+  }
+  return arr;
 }
 
 function Game(boardString){
