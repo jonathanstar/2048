@@ -79,7 +79,7 @@ Game.prototype.moveLeft = function(){
   for(var i = 0; i < this.boardArray.length; i+=4){
     newBoard.push(this.boardArray.slice(i, i+4).doCollisions().stackSquares());
   }
-  this.boardArray = [].concat.apply([], newBoard);
+  this.boardArray = newBoard.flatten();
 }
 
 Game.prototype.moveRight = function(){
@@ -87,7 +87,7 @@ Game.prototype.moveRight = function(){
   for(var i = 0; i < this.boardArray.length; i+=4){
     newBoard.push(this.boardArray.slice(i, i+4).reverse().doCollisions().stackSquares().reverse());
   }
-  this.boardArray = [].concat.apply([], newBoard);
+  this.boardArray = newBoard.flatten();
 }
 
 Game.prototype.moveUp = function(){
