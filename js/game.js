@@ -27,6 +27,7 @@ Array.prototype.doCollisions = function(){
       i++;
     }
   }
+  return this;
 }
 
 Array.prototype.stackSquares = function(){
@@ -56,9 +57,12 @@ Game.prototype.moveSquare = function(originalPos, newPos){
   }
 }
 
-
 Game.prototype.moveLeft = function(){
-
+  var newBoard = [];
+  for(var i = 0; i < this.boardArray.length; i+=4){
+    newBoard.push(this.boardArray.slice(i, i+4).doCollisions().stackSquares());
+  }
+  this.boardArray = [].concat.apply([], newBoard);
 }
 
 Game.prototype.moveRight = function(){
