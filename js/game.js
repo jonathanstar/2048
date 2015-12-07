@@ -66,7 +66,11 @@ Game.prototype.moveLeft = function(){
 }
 
 Game.prototype.moveRight = function(){
-
+  var newBoard = [];
+  for(var i = 0; i < this.boardArray.length; i+=4){
+    newBoard.push(this.boardArray.slice(i, i+4).reverse().doCollisions().stackSquares().reverse());
+  }
+  this.boardArray = [].concat.apply([], newBoard);
 }
 
 Game.prototype.moveUp = function(){
