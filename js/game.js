@@ -2,7 +2,7 @@
 //   return this.slice(0, index) + character + this.slice(index+1)
 // }
 
-var transposeMatrix = function(array){
+var transpose = function(array){
   var transposed = [];
   for(var i = 0; i < array.flatten().length; i++){
     var x =  Math.floor(i / array.length);
@@ -92,14 +92,15 @@ Game.prototype.moveRight = function(){
 
 Game.prototype.moveUp = function(){
   var newBoard = [];
-  var transposedBoardArray = [];
+  var matrixBoardArray = [];
   for(var i = 0; i < this.boardArray.length; i+=4){
-    transposedBoardArray.push(this.boardArray.slice(i, i+4))
+    matrixBoardArray.push(this.boardArray.slice(i, i+4))
   }
-  debugger
-
-  // newBoard.push(this.boardArray.slice(i, i+4).reverse().doCollisions().stackSquares().reverse());
-  // this.boardArray = [].concat.apply([], newBoard);
+  var transposedBoardArray = transpose(matrixBoardArray).flatten();
+  for(var i = 0; i < transposedBoardArray.length; i+=4){
+    newBoard.push(transposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
+  }
+  this.boardArray = transpose(newBoard).flatten();
 }
 
 Game.prototype.moveDown = function(){
