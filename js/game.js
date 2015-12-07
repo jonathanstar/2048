@@ -104,5 +104,14 @@ Game.prototype.moveUp = function(){
 }
 
 Game.prototype.moveDown = function(){
-
+  var newBoard = [];
+  var matrixBoardArray = [];
+  for(var i = 0; i < this.boardArray.length; i+=4){
+    matrixBoardArray.push(this.boardArray.slice(i, i+4))
+  }
+  var transposedBoardArray = transpose(matrixBoardArray).flatten().reverse();
+  for(var i = 0; i < transposedBoardArray.length; i+=4){
+    newBoard.push(transposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
+  }
+  this.boardArray = transpose(newBoard).flatten().reverse();
 }
