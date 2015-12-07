@@ -1,7 +1,3 @@
-// String.prototype.replaceChar = function(index, character){
-//   return this.slice(0, index) + character + this.slice(index+1)
-// }
-
 var transpose = function(array){
   var transposed = [];
   for(var i = 0; i < array.flatten().length; i++){
@@ -74,44 +70,56 @@ Game.prototype.moveSquare = function(originalPos, newPos){
   }
 }
 
-Game.prototype.moveLeft = function(){
+Game.prototype.move = function(direction){
   var newBoard = [];
-  for(var i = 0; i < this.boardArray.length; i+=4){
-    newBoard.push(this.boardArray.slice(i, i+4).doCollisions().stackSquares());
-  }
-  this.boardArray = newBoard.flatten();
-}
 
-Game.prototype.moveRight = function(){
-  var newBoard = [];
-  for(var i = 0; i < this.boardArray.length; i+=4){
-    newBoard.push(this.boardArray.slice(i, i+4).reverse().doCollisions().stackSquares().reverse());
-  }
-  this.boardArray = newBoard.flatten();
-}
+  var moveLeft = function(){
+    for(var i = 0; i < this.boardArray.length; i+=4){
+      newBoard.push(this.boardArray.slice(i, i+4).doCollisions().stackSquares());
+    }
+    this.boardArray = newBoard.flatten();
+  }.bind(this);
 
-Game.prototype.moveUp = function(){
-  var newBoard = [];
-  var matrixBoardArray = [];
-  for(var i = 0; i < this.boardArray.length; i+=4){
-    matrixBoardArray.push(this.boardArray.slice(i, i+4))
-  }
-  var transposedBoardArray = transpose(matrixBoardArray).flatten();
-  for(var i = 0; i < transposedBoardArray.length; i+=4){
-    newBoard.push(transposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
-  }
-  this.boardArray = transpose(newBoard).flatten();
-}
+  var moveRight = function(){
+    for(var i = 0; i < this.boardArray.length; i+=4){
+      newBoard.push(this.boardArray.slice(i, i+4).reverse().doCollisions().stackSquares().reverse());
+    }
+    this.boardArray = newBoard.flatten();
+  }.bind(this);
 
-Game.prototype.moveDown = function(){
-  var newBoard = [];
-  var matrixBoardArray = [];
-  for(var i = 0; i < this.boardArray.length; i+=4){
-    matrixBoardArray.push(this.boardArray.slice(i, i+4))
+  var transposedBoardArray = function(){
+    var matrixBoardArray = [];
+    for(var i = 0; i < this.boardArray.length; i+=4){
+      matrixBoardArray.push(this.boardArray.slice(i, i+4))
+    }
+    return transpose(matrixBoardArray).flatten()
+  }.bind(this);
+
+  var moveUp = function(){
+    var formattedTransposedBoardArray = transposedBoardArray();
+    for(var i = 0; i < formattedTransposedBoardArray.length; i+=4){
+      newBoard.push(formattedTransposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
+    }
+    this.boardArray = transpose(newBoard).flatten();
+  }.bind(this);
+
+  var moveDown = function(){
+    var formattedTransposedBoardArray = transposedBoardArray().reverse();
+    for(var i = 0; i < formattedTransposedBoardArray.length; i+=4){
+      newBoard.push(formattedTransposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
+    }
+    this.boardArray = transpose(newBoard).flatten().reverse();
+  }.bind(this);
+
+  if(direction === "left"){
+    moveLeft();
+  } else if(direction === "right"){
+    moveRight();
+  } else if(direction === "up"){
+    moveUp();
+  } else if(direction === "down"){
+    moveDown();
+  } else {
+    console.log("incorrect parameter for move function")
   }
-  var transposedBoardArray = transpose(matrixBoardArray).flatten().reverse();
-  for(var i = 0; i < transposedBoardArray.length; i+=4){
-    newBoard.push(transposedBoardArray.slice(i, i+4).doCollisions().stackSquares());
-  }
-  this.boardArray = transpose(newBoard).flatten().reverse();
 }
