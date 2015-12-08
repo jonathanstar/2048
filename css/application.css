@@ -70,10 +70,13 @@ td._512{
 td._1024{
   background-color: #edc53f;
   color: white;
+  font-size: 45px;
 }
 
 td._2048{
   background-color: gold;
+  color: white;
+  font-size: 45px;
 }
 
 
