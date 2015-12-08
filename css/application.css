@@ -44,30 +44,36 @@ td._16{
 
 td._32{
   background-color: #f67c5f;
+  color: white;
 }
 
 td._64{
   background-color: #f65e3b;
+  color: white;
 }
 
 td._128{
   background-color: #edcf72;
+  color: white;
 }
 
 td._256{
   background-color: #edcc61;
+  color: white;
 }
 
 td._512{
   background-color: #edc850;
+  color: white;
 }
 
 td._1024{
   background-color: #edc53f;
+  color: white;
 }
 
 td._2048{
-  background-color: #f59563;
+  background-color: gold;
 }
 
 
