@@ -13,5 +13,4 @@ View.prototype.paintBoard = function(){
         $(id).text("")
       }
     }
-
   }
