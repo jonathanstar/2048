@@ -63,7 +63,7 @@ var randomIndex = function(max, min){
 
 var setRandomBoardNumberArray = function(){
   var array = [];
-  for(var i = 0; i < 19; i++){
+  for(var i = 0; i < 9; i++){
     array.push("2");
   }
   array.push("4");
@@ -92,6 +92,16 @@ Game.prototype.emptySquares = function(){
 
 Game.prototype.randomBoardNumber = function(){
   return this.randomBoardNumberArray[Math.floor(Math.random() * this.randomBoardNumberArray.length)]
+}
+
+Game.prototype.randomFill = function(num){
+  var emptyIndeces = this.emptySquares();
+  var numToFill = num || 1;
+
+  for(var i = 0; i < numToFill; i++){
+    var indexToFill = emptyIndeces[randomIndex(0, emptyIndeces.length)];
+    this.boardArray[indexToFill] = this.randomBoardNumber();
+  }
 }
 
 Game.prototype.moveSquare = function(originalPos, newPos){
