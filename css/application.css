@@ -26,3 +26,20 @@ td {
   font-size: 55px;
 }
 
+td._2{
+  background-color: white;
+}
+
+td._4{
+  background-color: #ede0c8;
+}
+
+td._8{
+  background-color: #f2b179;
+}
+
+td._16{
+  background-color: #f59563;
+}
+
+
