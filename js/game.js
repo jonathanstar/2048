@@ -50,7 +50,7 @@ Array.prototype.doCollisions = function(){
 Array.prototype.stackSquares = function(){
   var arr = this.filter(function(x){
     return x!=="0"
-  })
+  });
   for(var i = arr.length; i < 4; i++){
     arr.push("0")
   }

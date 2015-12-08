@@ -3,7 +3,7 @@ body {
 }
 
 #table-container {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 table {
@@ -11,6 +11,13 @@ table {
   background-color: #bbada0;
   margin-top: 200px;
   margin: auto;
+}
+
+.game-title {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 60px;
+  color: #edc53f;
 }
 
 td {
