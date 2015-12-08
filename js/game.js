@@ -1,3 +1,7 @@
+String.prototype.replaceChar = function(index, character){
+  return this.slice(0, index) + character + this.slice(index+1)
+}
+
 var transpose = function(array){
   var transposed = [];
   for(var i = 0; i < array.flatten().length; i++){
@@ -53,12 +57,41 @@ Array.prototype.stackSquares = function(){
   return arr;
 }
 
-function Game(boardString){
+var randomIndex = function(max, min){
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+var setRandomBoardNumberArray = function(){
+  var array = [];
+  for(var i = 0; i < 19; i++){
+    array.push("2");
+  }
+  array.push("4");
+  return array;
+}
+
+function Game(string){
+  this.randomBoardNumberArray = setRandomBoardNumberArray();
+  var boardString = string || "0000000000000000".replaceChar(randomIndex(0, 16), this.randomBoardNumber()).replaceChar(randomIndex(0, 16), this.randomBoardNumber());
   this.boardArray = boardString.split("");
 }
 
 Game.prototype.toString = function(){
  return this.boardArray.slice(0, 4).join(" ") + "\n" + this.boardArray.slice(4, 8).join(" ") + "\n" + this.boardArray.slice(8, 12).join(" ") + "\n" + this.boardArray.slice(12).join(" ");
+}
+
+Game.prototype.emptySquares = function(){
+  var emptySquareIndeces = [];
+  for(var i = 0; i < this.boardArray.length; i++){
+    if(this.boardArray[i] === "0"){
+      emptySquareIndeces.push(i);
+    }
+  }
+  return emptySquareIndeces;
+}
+
+Game.prototype.randomBoardNumber = function(){
+  return this.randomBoardNumberArray[Math.floor(Math.random() * this.randomBoardNumberArray.length)]
 }
 
 Game.prototype.moveSquare = function(originalPos, newPos){
